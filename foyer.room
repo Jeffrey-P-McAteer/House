@@ -1,0 +1,137 @@
+Foyer      ("Foyer",
+            "You are in a well-lit foyer in which you see:%s"+
+            "It all looks very inviting.",
+new Item[]  {
+  new Item("Dining Room Door",
+    new String[]{"dining", "east", "east door", "dining room"},
+    "A pair of double doors to the east, leading to the dining hall.") {
+    public String action(Guest guest, Action action) {
+      switch (action) {
+        case Look:
+          return Util.rand("A pair of heavy oak doors.");
+        case Go:
+        case Open:
+          guest.enterRoom(DiningHall);
+          return "";
+        default:
+          return "You can't do that to a door!";
+      }
+    }
+  },
+  new Item("Deck Door",
+    new String[]{"pool", "deck", "west", "west door", "outside"},
+    "A pair of double doors to the west, leading to the pool deck.") {
+    public String action(Guest guest, Action action) {
+      switch (action) {
+        case Look:
+          return "A pair of light blue metal and glass doors." +
+                 (E.isSunset()? " The "+E.skyVisualAdjective()+" sky is visible beyond." : "") + 
+                 (!E.sunIsHidden()? " The "+Util.rand("","golden ","bright ","fiery ")+"sun shines through the glass"+
+                    (E.sunIsLowInSky() && Util.now().getHour() > 12? " and "+Util.rand("bounces","jumps")+" across the floor." : ".") : "");
+        case Go:
+        case Open:
+          guest.enterRoom(PoolDeck,
+            guest.name+" walks onto the "+PoolDeck+".",
+            "You "+Util.rand("walk","stride")+" onto the "+PoolDeck+".",
+            guest.name+" walks in from the "+guest.location+".");
+          return "";
+        default:
+          return "You can't do that to a door!";
+      }
+    }
+  },
+  new Item("West Stairs",
+    new String[]{"northwest", "northwest stair", "west stair", "northwest stairs", "west stairs", "northwest staircase", "west staircase"},
+    "A spiral staircase to the northwest.") {
+    public String action(Guest guest, Action action) {
+      switch (action) {
+        case Look:
+          return Util.rand("A staircase.");
+        case GoUp:
+          guest.enterRoom(Library,
+            guest.name+" walks upstairs to the "+Library+".",
+            "You "+Util.rand("walk","go")+" upstairs to the "+Library+".",
+            guest.name+" walks in from the "+guest.location+" downstairs.");
+          return "";
+        case GoDown:
+          guest.enterRoom(Basement,
+            guest.name+" walks downstairs to the "+Basement+".",
+            "You "+Util.rand("walk","go")+" downstairs to the "+Basement+".",
+            guest.name+" walks in from the "+guest.location+" upstairs.");
+          return "";
+        case Go:
+          guest.printf(Util.rand("Would you like to go up or down?"));
+          String dir;
+          while (true) {
+            dir = guest.getInput();
+            if (Data.UP.indexOf(dir) > -1) {
+              this.action(guest, Action.GoUp);
+              break;
+            } else if (Data.DOWN.indexOf(dir) > -1) {
+              this.action(guest, Action.GoDown);
+              break;
+            } else if (Data.NO.indexOf(dir) > -1) {
+              return Util.rand("You don't do anything.");
+            }
+            guest.printf(Util.rand("Up or down?"));
+          }
+          return "";
+        default:
+          return "You can't do that to a staircase!";
+      }
+    }
+  },
+  new Item("East Stairs",
+    new String[]{"stair", "stairs", "northeast", "northeast stair", "east stair", "northeast stairs", "east stairs", "northeast staircase", "east staircase"},
+    "A spiral staircase to the northeast.") {
+    public String action(Guest guest, Action action) {
+      switch (action) {
+        case Look:
+          return Util.rand("A staircase.");
+        case GoUp:
+          guest.enterRoom(Library,
+            guest.name+" walks upstairs to the "+Library+".",
+            "You "+Util.rand("walk","go")+" upstairs to the "+Library+".",
+            guest.name+" walks in from the "+guest.location+" downstairs.");
+          return "";
+        case GoDown:
+          guest.enterRoom(Basement,
+            guest.name+" walks downstairs to the "+Basement+".",
+            "You "+Util.rand("walk","go")+" downstairs to the "+Basement+".",
+            guest.name+" walks in from the "+guest.location+" upstairs.");
+          return "";
+        case Go:
+          guest.printf(Util.rand("Would you like to go up or down?"));
+          String dir;
+          while (true) {
+            dir = guest.getInput();
+            if (Data.UP.indexOf(dir) > -1) {
+              this.action(guest, Action.GoUp);
+              break;
+            } else if (Data.DOWN.indexOf(dir) > -1) {
+              this.action(guest, Action.GoDown);
+              break;
+            } else if (Data.NO.indexOf(dir) > -1) {
+              return Util.rand("You don't do anything.");
+            }
+            guest.printf(Util.rand("Up or down?"));
+          }
+          return "";
+        default:
+          return "You can't do that to a staircase!";
+      }
+    }
+  },
+  new Item("Fireplace",
+    new String[]{"fireplace", "fire", "north"},
+    "A warm, cozy fire.") {
+    public String action(Guest guest, Action action) {
+      switch (action) {
+        case Look:
+          return Util.rand(description, description, "*crackle* *pop* *hisss*", "Is that a bit of used floo powder?");
+        default:
+          return "You can't do that to a fireplace!";
+      }
+    }
+  },
+}),

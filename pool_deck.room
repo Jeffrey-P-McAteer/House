@@ -1,0 +1,81 @@
+PoolDeck   ("Pool Deck",
+            "A deck overlooking a cliff face. You see: %s",
+new Item[]  {
+  new Item("Foyer Door",
+    new String[]{"foyer", "south east", "south east door", "southeast", "southeast door"},
+    "A pair of double doors to the southeast, leading to the foyer.") {
+    public String action(Guest guest, Action action) {
+      switch (action) {
+        case Look:
+          return Util.rand("A pair of light blue metal and glass doors.");
+        case Go:
+        case Open:
+          guest.enterRoom(Room.Foyer);
+          return "";
+        default:
+          return "You can't do that to a door!";
+      }
+    }
+  },
+  new Item("Kitchen Door",
+    new String[]{"kitchen", "north east", "north east door", "northeast", "northeast door"},
+    "A door to the northeast, leading to the kitchen.") {
+    public String action(Guest guest, Action action) {
+      switch (action) {
+        case Look:
+          return Util.rand("A single door through which you can smell something delicious.");
+        case Go:
+        case Open:
+          guest.enterRoom(Room.Kitchen);
+          return "";
+        default:
+          return "You can't do that to a door!";
+      }
+    }
+  },
+  new Item("Pool",
+    new String[]{"pool", "water", "west"},
+    "A pool to the west overlooking the cliff.") {
+    public String action(Guest guest, Action action) {
+      switch (action) {
+        case Look:
+          return Util.rand(description); // todo
+        case Go:
+        case Swim:
+          if (guest.currentAction != null && guest.currentAction.toLowerCase().indexOf("swimming") > -1) {
+            return "You are already " + guest.currentAction + "!";
+          }
+          boolean dressedToSwim = false;
+          for (String suit : Data.SWIMMING_APPAREL) {
+            if (guest.clothing.indexOf(suit) > -1) {
+              dressedToSwim = true;
+              break;
+            }
+          }
+          if (dressedToSwim) {
+            guest.currentAction = "swimming";
+            return "You "+Util.rand("step","dive","jump")+" into the pool.";
+          }
+          return String.format(Util.rand("You can't swim in %s!",
+                                    "%s were not designed for swimming."), guest.clothing);
+        default:
+          return "You can't do that to a pool!";
+      }
+    }
+  },
+  new Item("View",
+    new String[]{"view", "landscape", "lagoon", "cliff", "cliffs"},
+    "A spectacular view of a lagoon surrounded on all but one side by tall cliffs.") {
+    public String action(Guest guest, Action action) {
+      switch (action) {
+        case Look:
+          return "Cerulean waters are wrapped up in a gigantic circular cliff protecting their beaches. "+
+                 "In the center you see a lagoon with some sort of pier connecting it to the beach. "+
+                 (E.sunIsHidden()? "A shame the sun isn't out now." : "The sun sparkles over the water like sugar-coated gumdrops.")+" "+
+                 "The "+E.skyVisualAdjective()+" sky above curls about itself, as if excited and restless.";
+        default:
+          return "You can't do that to thin air!"+Util.rand("", " (or photons, for that matter)");
+      }
+    }
+  },
+}),

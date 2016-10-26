@@ -1,0 +1,37 @@
+Garden     ("Garden", // add plants
+            "A garden where all the food is grown. You look about and see: %s",
+new Item[]  {
+  new Item("Kitchen Door",
+    new String[]{"garden", "garden door", "south", "south door"},
+    "A door to the south leading to the kitchen.") {
+    public String action(Guest guest, Action action) {
+      switch (action) {
+        case Look:
+          return Util.rand(description); // todo
+        case Go:
+        case Open:
+          guest.enterRoom(Room.Kitchen);
+          return "";
+        default:
+          return "You can't do that to a door!";
+      }
+    }
+  },
+  new Item("Forest Gate",
+    new String[]{"forest", "gate", "north", "north"},
+    "A door to the north leading to the forest.") {
+    public String action(Guest guest, Action action) {
+      switch (action) {
+        case Look:
+          return Util.rand("An iron gate.")+
+                  (E.windSpeed >= 15? " It swings softly in the wind." : "");
+        case Go:
+        case Open:
+          guest.enterRoom(Room.Forest);
+          return "";
+        default:
+          return "You can't do that to a gate!";
+      }
+    }
+  },
+}),

@@ -1,0 +1,55 @@
+Kitchen    ("Kitchen", // add stove/oven, pantry, etc...
+            "A kitchen filled with deliciousness.\nInside, you see: %s",
+new Item[]  {
+  new Item("Dining Hall Door",
+    new String[]{"dining", "hall", "dining hall", "east", "east door"},
+    "A door to the east leading to the dining hall.") {
+    public String action(Guest guest, Action action) {
+      switch (action) {
+        case Look:
+          return Util.rand("This is where you go with your food.");
+        case Go:
+        case Open:
+          guest.enterRoom(Room.DiningHall);
+          return "";
+        default:
+          return "You can't do that to a door!";
+      }
+    }
+  },
+  new Item("Pool Deck Door",
+    new String[]{"pool", "deck", "pool deck", "west", "west door"},
+    "A door to the west leading to the pool deck.") {
+    public String action(Guest guest, Action action) {
+      switch (action) {
+        case Look:
+          return Util.rand(description); // todo
+        case Go:
+        case Open:
+          guest.enterRoom(Room.PoolDeck);
+          return "";
+        default:
+          return "You can't do that to a door!";
+      }
+    }
+  },
+  new Item("Garden Door",
+    new String[]{"garden", "garden door", "north", "north door"},
+    "A door to the north leading to the garden.") {
+    public String action(Guest guest, Action action) {
+      switch (action) {
+        case Look:
+          return Util.rand(description); // todo
+        case Go:
+        case Open:
+          guest.enterRoom(Room.Garden,
+            guest.name+" walks out to the "+Room.Garden+".",
+            "You "+Util.rand("walk","stride")+" out to the "+Room.Garden+".",
+            guest.name+" walks out from the "+guest.location+".");
+          return "";
+        default:
+          return "You can't do that to a door!";
+      }
+    }
+  },
+}),

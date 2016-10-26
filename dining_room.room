@@ -1,0 +1,79 @@
+DiningHall ("Dining Hall",
+            "A large dining room with a steepled roof high above you.\nFar below the roof you observe:%s",
+new Item[]  {
+  new Item("Foyer Door",
+    new String[]{"foyer", "south west", "south west door", "southwest", "southwest door"},
+    "A pair of double doors to the southwest, leading to the foyer.") {
+    public String action(Guest guest, Action action) {
+      switch (action) {
+        case Look:
+          return Util.rand("A pair of heavy oak doors.");
+        case Go:
+        case Open:
+          guest.enterRoom(Room.Foyer);
+          return "";
+        default:
+          return "You can't do that to a door!";
+      }
+    }
+  },
+  new Item("Kitchen Door",
+    new String[]{"kitchen", "kitchen door", "northwest", "northwest door", "north west", "north west door"},
+    "A door to the northwest, leading to the kitchen.") {
+    public String action(Guest guest, Action action) {
+      switch (action) {
+        case Look:
+          return Util.rand("It's a door. Behind it you smell something absolutely delicious.");
+        case Go:
+        case Open:
+          guest.enterRoom(Room.Kitchen);
+          return "";
+        default:
+          return "You can't do that to a door!";
+      }
+    }
+  },
+  new Item("Tables",
+    new String[]{"table", "tables"},
+    "A pair of long tables running the length of the room.") {
+    public String action(Guest guest, Action action) {
+      switch (action) {
+        case Look:
+          return Util.rand("Two oak tables where guests may sit, eat, and make merry. (merriness still in beta)",
+                      "The tables are made of the same rich oak as the doors.");
+        case Sit:
+          if (guest.currentAction.equals("sitting")) {
+            return "You are already sitting down!";
+          }
+          guest.currentAction = "sitting";
+          return Util.rand("You take a seat.", "You sit at one of the tables.");
+        case Go:
+        case Open:
+          guest.enterRoom(Room.Kitchen);
+          return "";
+        default:
+          return "You can't do that to a table!";
+      }
+    }
+  },
+  new Item("Dance Floor",
+    new String[]{"dance", "floor", "dance floor"},
+    "A dance floor to the east of the room.") {
+    public String action(Guest guest, Action action) {
+      switch (action) {
+        case Look:
+          return Util.rand("A dance floor",
+                      "Tell jeff to write better descriptions. (It's midnight, conscience). Aww boo hoo. Grab some coffee and get back to line 412. Also, write in a DJ booth.");
+        case Go:
+        case Dance:
+          if (guest.currentAction.equals("dancing")) {
+            return "You are already dancing!";
+          }
+          guest.currentAction = "dancing";
+          return Util.rand("You waltz onto the dance floor...");
+        default:
+          return "You can't do that!";
+      }
+    }
+  },
+}),
