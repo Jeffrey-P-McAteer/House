@@ -4,7 +4,6 @@
  *     Look at wind "VISUAL CLUES AND DAMAGE EFFECTS" section
  * ToDo:
  *   Inventory
- *   Fix chat input interruptions (maybe only print out at end of parseInput() ? )
  *   
  */
 

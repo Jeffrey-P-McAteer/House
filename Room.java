@@ -1,6 +1,9 @@
 //1 "Room.c"
 //1 "<built-in>"
 //1 "<command-line>"
+//31 "<command-line>"
+//1 "/usr/include/stdc-predef.h" 1 3 4
+//32 "<command-line>" 2
 //1 "Room.c"
 import java.util.*;
 import java.net.*;
@@ -12,6 +15,7 @@ import java.time.LocalDateTime;
 
 
 public enum Room {
+
 
 
 
@@ -155,7 +159,7 @@ new Item[] {
     }
   },
 }),
-//17 "Room.c" 2
+//18 "Room.c" 2
 //1 "basement.room" 1
 Basement ("Basement",
             "You are in a basement. You see: %s",
@@ -255,7 +259,7 @@ new Item[] {
     }
   },
 }),
-//18 "Room.c" 2
+//19 "Room.c" 2
 //1 "library.room" 1
 Library ("Library",
             "A library. It smells of knowledge and: %s",
@@ -367,7 +371,7 @@ new Item[] {
     }
   },
 }),
-//19 "Room.c" 2
+//20 "Room.c" 2
 //1 "dining_room.room" 1
 DiningHall ("Dining Hall",
             "A large dining room with a steepled roof high above you.\nFar below the roof you observe:%s",
@@ -448,7 +452,7 @@ new Item[] {
     }
   },
 }),
-//20 "Room.c" 2
+//21 "Room.c" 2
 //1 "pool_deck.room" 1
 PoolDeck ("Pool Deck",
             "A deck overlooking a cliff face. You see: %s",
@@ -531,7 +535,7 @@ new Item[] {
     }
   },
 }),
-//21 "Room.c" 2
+//22 "Room.c" 2
 //1 "kitchen.room" 1
 Kitchen ("Kitchen",
             "A kitchen filled with deliciousness.\nInside, you see: %s",
@@ -588,7 +592,7 @@ new Item[] {
     }
   },
 }),
-//22 "Room.c" 2
+//23 "Room.c" 2
 //1 "garden.room" 1
 Garden ("Garden",
             "A garden where all the food is grown. You look about and see: %s",
@@ -627,7 +631,7 @@ new Item[] {
     }
   },
 }),
-//23 "Room.c" 2
+//24 "Room.c" 2
 
   Forest ("Forest",
               "A forest which is supremely underprogrammed. Yell at jeff and tell him the only things here are: %s",

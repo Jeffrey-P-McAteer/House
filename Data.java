@@ -7,7 +7,8 @@ import java.util.List;
 public class Data {
   
   public static final int PORT = 8888;
-  public static final boolean DEBUG = System.getProperty("os.name").contains("OS X");
+  public static final boolean DEBUG = false;
+  
   /** Timeout for fetching real-world data. */
   public static final long TIMEOUT_MS = (DEBUG? 2 : 10) * 60 * 1000;
   public static final String MEMORY = DEBUG? "/tmp/housemem" : System.getProperty("user.home")+"/housemem";

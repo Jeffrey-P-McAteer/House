@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 public enum Room {
 
 // I'm a lazy jerk who doesn't like 600-line classes
+
 // precompile with 'cpp Room.c Room.java', then pipe it through "sed 's/^# /\/\//g'" to clean the new statements
 // For Sublime Text users, get proper syntax coloring with View->Syntax->Open All...as->Java->Java
 

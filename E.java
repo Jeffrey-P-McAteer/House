@@ -13,6 +13,13 @@ import java.net.URLEncoder;
  */
 public class E {
   
+  // For debugging weatehr APIs
+  public static void main(String... args) {
+    E.fetch();
+    System.out.printf("Today is %s.\nThe %s wind is %d mph.\nThe temperature is %d\u00B0F.\nThe sun rises at %.2f and sets at %.2f.\n",
+                      E.sky, E.windDir, E.windSpeed, E.temp, E.sunriseHour, E.sunsetHour);
+  }
+  
   public static final String STATE = "virginia";
   public static final String ST = "va";
   public static final String CITY = "fredericksburg";
@@ -39,8 +46,8 @@ public class E {
     
     BooleanSupplier[] fetchers = new BooleanSupplier[] {
       E::fetchYahooWeather,
-      E::fetchGoogleWeather,
-      E::fetchBingWeather,
+      E::fetchOpenWeatherMapWeather,
+      //E::fetchBingWeather,
       E::fetchDefaultData,
     };
     for (BooleanSupplier fetcher : fetchers) {
@@ -172,7 +179,7 @@ public class E {
       };
       parser.parse(url_sky, sky_handler);
       
-      return true;
+      return E.sky != null;
       
     } catch (java.net.UnknownHostException uhe) {
       if (Data.DEBUG) System.err.println("You are offline!");
@@ -183,13 +190,9 @@ public class E {
     }
   }
   
-  private static boolean fetchGoogleWeather() {
-    if (Data.DEBUG) System.err.println("You haven't written E.fetchGoogleWeather() yet, but you need it now.");
-    return false;
-  }
-  
-  private static boolean fetchBingWeather() {
-    if (Data.DEBUG) System.err.println("You haven't written E.fetchBingWeather() yet, but you need it now.");
+  private static boolean fetchOpenWeatherMapWeather() {
+    // Key: &APPID=0dd3b4d82fad93deaab50d094e7094f1
+    
     return false;
   }
   

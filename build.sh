@@ -1,5 +1,7 @@
 #!/bin/bash
+
 [ ! -e classes ] && mkdir classes
+
 # Use C preprocessors in Room.c to generate large Room.java class
 cpp Room.c Room.java
 # Remove junk from cpp

@@ -127,7 +127,16 @@ public class Guest extends Thread implements Serializable {
     // gets user's name & description if unknown
     if (greet()) {
       this.handleAction(null, Action.Stop, null, null);
-      while (parseInput(getInput()));
+      try {
+        while (parseInput(getInput()));
+      }
+      catch (Exception e) {
+        e.printStackTrace();
+        printf(Util.rand("Uh-oh!", "Oh no!", "Welp.") + " Something in the House broke, and it's entirely Jeffrey's fault.");
+        StringWriter sw = new StringWriter();
+        e.printStackTrace(new PrintWriter(sw));
+        printf("Details:\n%s\n", sw.toString());
+      }
       this.handleAction(null, Action.SilentListen, null, null);
       location.removeGuest(this, Util.rand("You look around and notice that %s has disappeared",
                                       "%s suddenly explodes into a cloud of smoke"), this.name);
@@ -315,7 +324,7 @@ public class Guest extends Thread implements Serializable {
           printf("You can't dance with that!");
         }
         break;
-      /*case Write:
+      /*case Write: // todo allow guests to write on things (this could end badly)
         if (object == null) {
           
         } else {
@@ -411,7 +420,7 @@ public class Guest extends Thread implements Serializable {
     if (output == null || output.equals("null")) {
       new Exception("printf output is null!").printStackTrace();
     }
-    if (currentAction != null && currentAction.equalsIgnoreCase("listening")) {
+    if (currentAction != null && currentAction.equalsIgnoreCase("listening")) { // todo make this look for an Action variable, in case 'listening' turns into something else
       out.println(output);
     } else {
       thingsToSay.add(output);
