@@ -16,6 +16,6 @@ And connect with
 socat - TCP:$YOUR_IP_ADDRESS:8888
 ```
 
-And because 2025+ likes AI-generated everything and I'm only half an artist, here's a cool graph.
+And because 2025+ likes AI-generated everything and I'm only half an artist, here's a cool graph from our friends at https://gitdiagram.com/.
 
-![ai-gen-code-graph.png](ai-gen-code-graph.png)
+![ai-gen-code-graph from https://gitdiagram.com/](ai-gen-code-graph.png)
